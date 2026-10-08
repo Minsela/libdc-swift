@@ -8,14 +8,12 @@ let package = Package(
         .macOS(.v13)
     ],
     products: [
+        // DivingHub fork: one dynamic product, so libdivecomputer (LGPL-2.1) ships as a
+        // separate, replaceable framework instead of being linked into the app binary.
         .library(
             name: "LibDCSwift",
-            targets: ["LibDCSwift"]
-        ),
-        .library(
-            name: "LibDCBridge",
             type: .dynamic,
-            targets: ["LibDCBridge"]
+            targets: ["LibDCSwift"]
         ),
         .plugin(
             name: "ClibdcVerGeneratorPlugin",
